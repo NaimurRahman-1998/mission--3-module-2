@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { RequestHandler } from 'express';
 import { StudentServices } from './student.service';
 
 
@@ -18,7 +18,7 @@ const pick = <T extends Record<string, unknown>, k extends keyof T>(
 
 export default pick;
 
-const getAllStudents = async (req: Request, res: Response , next : NextFunction) => {
+const getAllStudents : RequestHandler = async (req,res,next) => {
   try {
     const paginationFields = ['page', 'limit', 'sortBy', 'sortOrder'];
 
@@ -47,7 +47,7 @@ const getAllStudents = async (req: Request, res: Response , next : NextFunction)
   }
 };
 
-const getSingleStudent = async (req: Request, res: Response , next : NextFunction) => {
+const getSingleStudent : RequestHandler = async (req,res,next) => {
   try {
     const { studentId } = req.params;
 
@@ -63,7 +63,7 @@ const getSingleStudent = async (req: Request, res: Response , next : NextFunctio
   }
 };
 
-const deleteStudent = async (req: Request, res: Response , next : NextFunction) => {
+const deleteStudent : RequestHandler = async (req,res,next) => {
   try {
     const { studentId } = req.params;
 
