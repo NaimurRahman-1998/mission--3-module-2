@@ -1,12 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { NextFunction, Request, RequestHandler, Response } from 'express';
+import catchAsync from '../../utils/catchAsync';
 import { UserServices } from './user.services';
 
-const catchAsync = (fn : RequestHandler) => {
-  return(req : Request,res : Response,next : NextFunction)=>{
-    Promise.resolve(fn(req,res,next)).catch(err => next(err));
-  }
-}
+
 
 const createStudent = catchAsync(async (req,res) => {
       const { password , student: studentData } = req.body;

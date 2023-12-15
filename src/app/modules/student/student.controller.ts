@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { NextFunction, Request, RequestHandler, Response } from 'express';
+import catchAsync from '../../utils/catchAsync';
 import { StudentServices } from './student.service';
 
 
@@ -19,12 +19,6 @@ const pick = <T extends Record<string, unknown>, k extends keyof T>(
 };
 
 export default pick;
-
-const catchAsync = (fn : RequestHandler) => {
-  return(req : Request,res : Response,next : NextFunction)=>{
-    Promise.resolve(fn(req,res,next)).catch(err => next(err));
-  }
-}
 
 const getAllStudents = catchAsync(async (req,res,next) => {
 

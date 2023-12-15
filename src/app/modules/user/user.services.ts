@@ -13,12 +13,10 @@ const createStudentIntoDB = async (password: string, studentData: TStudent) => {
   const newUser = await User.create(userData);
     
   if (Object.keys(newUser).length) {
-    console.log('Document created successfully');
     studentData.id = newUser.id;
     studentData.user = newUser._id;
 
     const newStudent = await Student.create(studentData);
-    console.log('Document created successfully');
     return newStudent;
   }
 };
