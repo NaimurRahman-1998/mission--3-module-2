@@ -15,7 +15,9 @@ const createStudentIntoDB = async (password: string, studentData: TStudent) => {
 
   const admissionSemester = await AcademicSemester.findById(studentData.admissionSemester)
 
-  userData.id = await generateStudentId(admissionSemester);
+  if (admissionSemester) {
+    userData.id = await generateStudentId(admissionSemester);
+  }
   userData.password = password || (config.default_password as string);
   userData.role = 'Student';
   const newUser = await User.create(userData);
